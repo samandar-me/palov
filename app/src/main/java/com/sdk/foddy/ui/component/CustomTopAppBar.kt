@@ -20,7 +20,8 @@ import com.sdk.foddy.ui.theme.AppFont
 fun CustomTopAppBar(
     modifier: Modifier = Modifier,
     isBackIconVisible: Boolean,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    title: String
 ) {
     Row(
         modifier = modifier
@@ -34,9 +35,9 @@ fun CustomTopAppBar(
                 Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
             }
         }
-        Spacer(modifier = Modifier.width(15.dp))
+        Spacer(modifier = Modifier.width(13.dp))
         Text(
-            text = "Details",
+            text = title,
             color = MaterialTheme.colorScheme.onSecondary,
             fontSize = 20.sp,
             fontFamily = AppFont,

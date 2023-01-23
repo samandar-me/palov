@@ -49,7 +49,8 @@ fun MainScreen() {
         topBar = {
             CustomTopAppBar(
                 isBackIconVisible = !isMain,
-                onBackClick = { navHostController.popBackStack() }
+                onBackClick = { navHostController.popBackStack() },
+                title = title
             )
         },
         bottomBar = {
