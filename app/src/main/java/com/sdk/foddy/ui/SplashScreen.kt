@@ -1,13 +1,16 @@
 package com.sdk.foddy.ui
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -19,7 +22,6 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(navHostController: NavHostController) {
-    BackgroundImage(image = if (isSystemInDarkTheme()) R.drawable.img else R.drawable.img_4)
     LaunchedEffect(key1 = true) {
         delay(2000L)
         navHostController.navigate(Graph.MAIN) {
@@ -29,16 +31,19 @@ fun SplashScreen(navHostController: NavHostController) {
         }
     }
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.primary),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         Text(
             text = "Palov",
-            fontSize = 45.sp,
-            color = MaterialTheme.colors.onSecondary,
+            fontSize = 60.sp,
+            color = MaterialTheme.colorScheme.onSecondary,
             fontFamily = AppFont
         )
-        Spacer(modifier = Modifier.height(180.dp))
+        Spacer(modifier = Modifier.height(20.dp))
+        Image(painter = painterResource(id = R.drawable.back), contentDescription = "")
     }
 }

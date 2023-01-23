@@ -8,6 +8,7 @@ import com.sdk.foddy.ui.SplashScreen
 import com.sdk.foddy.ui.bottom.favorite.FavoriteScreen
 import com.sdk.foddy.ui.bottom.recipes.RecipesScreen
 import com.sdk.foddy.ui.bottom.settings.SettingsScreen
+import com.sdk.foddy.ui.detail.DetailScreen
 import com.sdk.foddy.util.Graph
 
 fun NavGraphBuilder.splashNavGraph(navHostController: NavHostController) {
@@ -45,9 +46,11 @@ fun MainNavGraph(navHostController: NavHostController) {
 
 fun NavGraphBuilder.detailsNavGraph(navHostController: NavHostController) {
     navigation(
-        route = "${Graph.DETAIL}",
+        route = "${Graph.DETAIL}/{title}",
         startDestination = "detail_graph"
     ) {
-
+        composable(route = "detail_graph") {
+            DetailScreen(navHostController = navHostController)
+        }
     }
 }
