@@ -2,7 +2,6 @@ package com.sdk.data.remote.model
 
 data class Result(
     val aggregateLikes: Int,
-    val analyzedInstructions: List<AnalyzedInstruction>,
     val author: String,
     val cheap: Boolean,
     val cookingMinutes: Int,
@@ -22,7 +21,6 @@ data class Result(
     val likes: Int,
     val lowFodmap: Boolean,
     val missedIngredientCount: Int,
-    val missedIngredients: List<MissedIngredient>,
     val occasions: List<String>,
     val preparationMinutes: Int,
     val pricePerServing: Double,

@@ -28,9 +28,6 @@ fun MainScreen() {
     var isMain by remember {
         mutableStateOf(false)
     }
-    var query by remember {
-        mutableStateOf("")
-    }
     var searchState by remember {
         mutableStateOf(SearchWidgetState.CLOSED)
     }
@@ -77,16 +74,11 @@ fun MainScreen() {
                 SearchWidgetState.OPENED -> {
                     if (isRecipe) {
                         SearchAppBar(
-                            text = query,
-                            onTextChange = { query = it },
                             onCloseClicked = {
                                 searchState = SearchWidgetState.CLOSED
                             },
                             onSearchClicked = {
 
-                            },
-                            onClearClicked = {
-                                query = ""
                             }
                         )
                     } else {
