@@ -1,6 +1,6 @@
 package com.sdk.data.remote.model
 
-data class FoodResponse(
+data class FoodResponseDTO(
     val number: Int,
     val offset: Int,
     val results: List<Result>,

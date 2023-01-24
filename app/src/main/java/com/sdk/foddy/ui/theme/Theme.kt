@@ -13,7 +13,7 @@ import com.sdk.foddy.MainActivity
 
 private val DarkColorPalette = darkColorScheme(
     primary = DarkColor,
-    onSecondary = PurpleGrey80
+    onSecondary = PurpleGrey80,
 )
 
 private val LightColorPalette = lightColorScheme(
