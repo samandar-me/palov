@@ -22,8 +22,32 @@ class RecipeViewModel @Inject constructor(
     private val _state: MutableState<RecipesState> = mutableStateOf(RecipesState())
     val state: State<RecipesState> get() = _state
 
-    init {
-        getRandomRecipes()
+    fun onEvent(event: RecipeEvent) {
+        when (event) {
+            is RecipeEvent.OnGetAllRecipes -> {
+                getRandomRecipes()
+            }
+            is RecipeEvent.OnSearchFood -> {
+                viewModelScope.launch {
+                    useCases.searchFoodUseCase(searchQueries(event.query)).collect { response ->
+                        when (response) {
+                            is MyResult.Loading -> {
+                                _state.value = _state.value.copy(isLoading = true)
+                                delay(1000L)
+                            }
+                            is MyResult.Error -> {
+                                _state.value =
+                                    _state.value.copy(isLoading = false, error = response.message)
+                            }
+                            is MyResult.Success -> {
+                                _state.value =
+                                    _state.value.copy(isLoading = false, success = response.data)
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun getRandomRecipes() {
@@ -51,8 +75,21 @@ class RecipeViewModel @Inject constructor(
             _state.value = _state.value.copy(isLoading = false, error = "No internet connection")
         }
     }
+
     private fun getQueries(): HashMap<String, String> {
         val map = HashMap<String, String>()
+        map["number"] = "20"
+        map["apiKey"] = Constants.API_KEY
+        map["addRecipeInformation"] = "true"
+        map["fillIngredients"] = "true"
+        map["type"] = "main course"
+        map["diet"] = "gluten free"
+        return map
+    }
+
+    private fun searchQueries(query: String): HashMap<String, String> {
+        val map = HashMap<String, String>()
+        map["query"] = query
         map["number"] = "20"
         map["apiKey"] = Constants.API_KEY
         map["addRecipeInformation"] = "true"

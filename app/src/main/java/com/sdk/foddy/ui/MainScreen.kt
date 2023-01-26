@@ -10,8 +10,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.sdk.foddy.ui.bottom.recipes.RecipeEvent
+import com.sdk.foddy.ui.bottom.recipes.RecipeViewModel
 import com.sdk.foddy.ui.component.BottomBar
 import com.sdk.foddy.ui.component.CustomTopAppBar
 import com.sdk.foddy.ui.component.SearchAppBar
@@ -22,71 +25,42 @@ import com.sdk.foddy.util.SearchWidgetState
 @Composable
 fun MainScreen() {
     val navHostController = rememberNavController()
-    var title by remember {
-        mutableStateOf("")
-    }
-    var isMain by remember {
-        mutableStateOf(false)
-    }
-    var searchState by remember {
-        mutableStateOf(SearchWidgetState.CLOSED)
-    }
-    var isRecipe by remember {
-        mutableStateOf(true)
-    }
-    val current = navHostController.currentBackStackEntryAsState()
-    when (current.value?.destination?.route) {
-        BottomBarScreen.Recipes.route -> {
-            isMain = true
-            title = "Recipes"
-            isRecipe = true
-        }
-        BottomBarScreen.Favorites.route -> {
-            isMain = true
-            title = "Favorites"
-            isRecipe = false
-        }
-        BottomBarScreen.Settings.route -> {
-            isMain = true
-            title = "Settings"
-            isRecipe = false
-        }
-        else -> {
-            title = "Details"
-            isMain = false
-            isRecipe = false
-        }
-    }
+//    var title by remember {
+//        mutableStateOf("")
+//    }
+//    var isMain by remember {
+//        mutableStateOf(false)
+//    }
+//    var searchState by remember {
+//        mutableStateOf(SearchWidgetState.CLOSED)
+//    }
+//    var isRecipe by remember {
+//        mutableStateOf(true)
+//    }
+//    val current = navHostController.currentBackStackEntryAsState()
+//    when (current.value?.destination?.route) {
+//        BottomBarScreen.Recipes.route -> {
+//            isMain = true
+//            title = "Recipes"
+//            isRecipe = true
+//        }
+//        BottomBarScreen.Favorites.route -> {
+//            isMain = true
+//            title = "Favorites"
+//            isRecipe = false
+//        }
+//        BottomBarScreen.Settings.route -> {
+//            isMain = true
+//            title = "Settings"
+//            isRecipe = false
+//        }
+//        else -> {
+//            title = "Details"
+//            isMain = false
+//            isRecipe = false
+//        }
+//    }
     Scaffold(
-        topBar = {
-            when (searchState) {
-                SearchWidgetState.CLOSED -> {
-                    CustomTopAppBar(
-                        title = title,
-                        isBackIconVisible = !isMain,
-                        isSearchIconVisible = isRecipe,
-                        onBackClicked = { navHostController.popBackStack() },
-                        onSearchClicked = {
-                            searchState = SearchWidgetState.OPENED
-                        }
-                    )
-                }
-                SearchWidgetState.OPENED -> {
-                    if (isRecipe) {
-                        SearchAppBar(
-                            onCloseClicked = {
-                                searchState = SearchWidgetState.CLOSED
-                            },
-                            onSearchClicked = {
-
-                            }
-                        )
-                    } else {
-                        searchState = SearchWidgetState.CLOSED
-                    }
-                }
-            }
-        },
         bottomBar = {
             BottomBar(navController = navHostController)
         }

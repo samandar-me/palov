@@ -6,6 +6,7 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.ViewCompat
@@ -14,12 +15,13 @@ import com.sdk.foddy.MainActivity
 private val DarkColorPalette = darkColorScheme(
     primary = DarkColor,
     onSecondary = PurpleGrey80,
+    onTertiary = DarkColor
 )
 
 private val LightColorPalette = lightColorScheme(
     primary = LightColor,
-    onSecondary = DarkColor
-
+    onSecondary = DarkColor,
+    onTertiary = Color.White
     /* Other default colors to override
     background = Color.White,
     surface = Color.White,
