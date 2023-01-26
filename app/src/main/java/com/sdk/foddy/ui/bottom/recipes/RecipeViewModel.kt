@@ -29,11 +29,7 @@ class RecipeViewModel @Inject constructor(
     private fun getRandomRecipes() {
         if (helper.isNetworkConnected()) {
             viewModelScope.launch {
-                useCases.getAllRecipesUseCase(
-                    hashMapOf(
-                        "apiKey" to Constants.API_KEY
-                    )
-                ).collect { response ->
+                useCases.getAllRecipesUseCase(getQueries()).collect { response ->
                     when (response) {
                         is MyResult.Loading -> {
                             _state.value = _state.value.copy(isLoading = true)
@@ -55,12 +51,14 @@ class RecipeViewModel @Inject constructor(
             _state.value = _state.value.copy(isLoading = false, error = "No internet connection")
         }
     }
-
-    private val mapQueries = hashMapOf(
-        "number" to "10",
-        "apiKey" to Constants.API_KEY,
-        "diet" to "gluten free",
-        "addRecipeInformation" to "true",
-        "fillIngredients" to "true"
-    )
+    private fun getQueries(): HashMap<String, String> {
+        val map = HashMap<String, String>()
+        map["number"] = "20"
+        map["apiKey"] = Constants.API_KEY
+        map["addRecipeInformation"] = "true"
+        map["fillIngredients"] = "true"
+        map["type"] = "main course"
+        map["diet"] = "gluten free"
+        return map
+    }
 }
