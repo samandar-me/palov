@@ -47,12 +47,16 @@ fun SearchAppBar(
                 )
             },
             textStyle = TextStyle(
-                fontSize = MaterialTheme.typography.bodyMedium.fontSize
+                fontSize = MaterialTheme.typography.bodyLarge.fontSize
             ),
             singleLine = true,
             leadingIcon = {
                 IconButton(
-                    onClick = {}
+                    onClick = {
+                        if (text.isNotBlank()) {
+                            onSearchClicked(text)
+                        }
+                    }
                 ) {
                     Icon(
                         imageVector = Icons.Default.Search,
@@ -85,7 +89,7 @@ fun SearchAppBar(
                 onSearch = {
                     onSearchClicked(text)
                 }
-            ),
+            )
         )
     }
 }

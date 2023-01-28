@@ -22,18 +22,18 @@ class RecipeViewModel @Inject constructor(
     private val _state: MutableState<RecipesState> = mutableStateOf(RecipesState())
     val state: State<RecipesState> get() = _state
 
+    init {
+        getRandomRecipes()
+    }
+
     fun onEvent(event: RecipeEvent) {
         when (event) {
-            is RecipeEvent.OnGetAllRecipes -> {
-                getRandomRecipes()
-            }
             is RecipeEvent.OnSearchFood -> {
                 viewModelScope.launch {
                     useCases.searchFoodUseCase(searchQueries(event.query)).collect { response ->
                         when (response) {
                             is MyResult.Loading -> {
                                 _state.value = _state.value.copy(isLoading = true)
-                                delay(1000L)
                             }
                             is MyResult.Error -> {
                                 _state.value =
@@ -68,7 +68,6 @@ class RecipeViewModel @Inject constructor(
                                 _state.value.copy(isLoading = false, success = response.data)
                         }
                     }
-                    println("@@@vm${state.value}")
                 }
             }
         } else {
@@ -79,7 +78,7 @@ class RecipeViewModel @Inject constructor(
     private fun getQueries(): HashMap<String, String> {
         val map = HashMap<String, String>()
         map["number"] = "20"
-        map["apiKey"] = Constants.API_KEY
+        map["apiKey"] = Constants.API_KEY2
         map["addRecipeInformation"] = "true"
         map["fillIngredients"] = "true"
         map["type"] = "main course"
@@ -91,7 +90,7 @@ class RecipeViewModel @Inject constructor(
         val map = HashMap<String, String>()
         map["query"] = query
         map["number"] = "20"
-        map["apiKey"] = Constants.API_KEY
+        map["apiKey"] = Constants.API_KEY2
         map["addRecipeInformation"] = "true"
         map["fillIngredients"] = "true"
         map["type"] = "main course"

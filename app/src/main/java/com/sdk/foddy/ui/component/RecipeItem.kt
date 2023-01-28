@@ -9,6 +9,7 @@ import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.coil.rememberCoilPainter
+import com.google.accompanist.imageloading.isFinalState
 import com.sdk.domain.model.Food
 import com.sdk.foddy.R
 import com.sdk.foddy.ui.theme.DescColor
@@ -32,7 +34,7 @@ fun RecipeItem(
     Card(
         modifier = modifier
             .fillMaxSize()
-            .height(190.dp)
+            .height(185.dp)
             .padding(4.dp)
             .clip(RoundedCornerShape(10.dp))
             .clickable { onItemClicked(food) },
@@ -40,17 +42,27 @@ fun RecipeItem(
     ) {
         Row(modifier = Modifier.fillMaxSize()) {
             rememberCoilPainter(request = food.image).also {
-                Image(
-                    painter = it,
-                    contentDescription = "Image",
-                    modifier = Modifier.fillMaxSize().weight(1f),
-                    contentScale = ContentScale.FillBounds
-                )
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier.fillMaxSize().weight(1f)
+                ) {
+                    if (it.loadState.isFinalState()) { // final state, works when state finished / image uploaded
+                        Image(
+                            painter = it,
+                            contentDescription = "Image",
+                            modifier = Modifier
+                                .fillMaxSize(),
+                            contentScale = ContentScale.FillBounds
+                        )
+                    } else {
+                        CircularProgressIndicator(color = MaterialTheme.colorScheme.onSecondary)
+                    }
+                }
             }
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .weight(1f)
+                    .weight(1.1f)
                     .padding(horizontal = 10.dp, vertical = 5.dp),
                 verticalArrangement = Arrangement.SpaceBetween,
                 horizontalAlignment = Alignment.CenterHorizontally

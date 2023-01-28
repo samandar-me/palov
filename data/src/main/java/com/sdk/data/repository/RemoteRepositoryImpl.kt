@@ -18,11 +18,10 @@ class RemoteRepositoryImpl @Inject constructor(
             val response = service.getAllRecipes(queryMap)
             if (response.isSuccessful) {
                 val data = response.body()?.results?.map { it.toFood() }!!
+                println("@@@${response.body()}")
                 emit(MyResult.Success(data))
             }
-            println("@@@Rep${response.body()}")
         } catch (e: Exception) {
-            println("@@@Rep${e.message}")
             emit(MyResult.Error(e.message.toString()))
         }
     }

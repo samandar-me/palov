@@ -4,11 +4,13 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.sdk.domain.model.Food
 import com.sdk.foddy.ui.SplashScreen
 import com.sdk.foddy.ui.bottom.favorite.FavoriteScreen
 import com.sdk.foddy.ui.bottom.recipes.RecipesScreen
 import com.sdk.foddy.ui.bottom.settings.SettingsScreen
 import com.sdk.foddy.ui.detail.DetailScreen
+import com.sdk.foddy.util.AssetParamType
 import com.sdk.foddy.util.Graph
 
 fun NavGraphBuilder.splashNavGraph(navHostController: NavHostController) {
@@ -46,11 +48,15 @@ fun MainNavGraph(navHostController: NavHostController) {
 
 fun NavGraphBuilder.detailsNavGraph(navHostController: NavHostController) {
     navigation(
-        route = "${Graph.DETAIL}/{title}",
-        startDestination = "detail_graph"
+        route = Graph.DETAIL,
+        startDestination = "detail"
     ) {
-        composable(route = "detail_graph") {
-            DetailScreen(navHostController = navHostController)
+        composable(
+            route = "detail"
+        ) {
+            val food =
+                navHostController.previousBackStackEntry?.savedStateHandle?.get<Food>("food")
+            DetailScreen(navHostController = navHostController, food = food)
         }
     }
 }
