@@ -15,13 +15,15 @@ import com.sdk.foddy.MainActivity
 private val DarkColorPalette = darkColorScheme(
     primary = DarkColor,
     onSecondary = PurpleGrey80,
-    onTertiary = DarkColor
+    onTertiary = DarkColor,
+    onTertiaryContainer = LightGray
 )
 
 private val LightColorPalette = lightColorScheme(
     primary = LightColor,
     onSecondary = DarkColor,
-    onTertiary = Color.White
+    onTertiary = Color.White,
+    onTertiaryContainer = LightColor
     /* Other default colors to override
     background = Color.White,
     surface = Color.White,

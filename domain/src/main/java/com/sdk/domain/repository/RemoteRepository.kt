@@ -6,5 +6,4 @@ import kotlinx.coroutines.flow.Flow
 
 interface RemoteRepository {
     suspend fun getAllRecipes(queryMap: Map<String, String>): Flow<MyResult<List<Food>>>
-    suspend fun searchRecipe(query: Map<String, String>): Flow<MyResult<List<Food>>>
 }

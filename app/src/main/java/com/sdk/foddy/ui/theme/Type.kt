@@ -13,6 +13,11 @@ val AppFont = FontFamily(
         Font(R.font.lobster)
     )
 )
+val ItimFont = FontFamily(
+    fonts = listOf(
+        Font(R.font.itim)
+    )
+)
 
 val Typography = Typography(
     labelLarge = TextStyle(

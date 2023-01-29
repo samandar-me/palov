@@ -23,18 +23,4 @@ class RemoteRepositoryImpl @Inject constructor(
             emit(MyResult.Error(e.message.toString()))
         }
     }
-
-    override suspend fun searchRecipe(query: Map<String, String>) = flow {
-        emit(MyResult.Loading)
-        try {
-            val response = service.searchFood(query)
-            if (response.isSuccessful) {
-                response.body()?.results?.map { it.toFood() }?.let {
-                    emit(MyResult.Success(it))
-                }
-            }
-        } catch (e: Exception) {
-            emit(MyResult.Error(e.message.toString()))
-        }
-    }
 }
