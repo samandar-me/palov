@@ -27,7 +27,7 @@ fun DetailScreen(
     Column(modifier = Modifier.fillMaxSize()) {
         TopAppBar(
             title = {
-                Text(text = "Details", color = MaterialTheme.colorScheme.onSecondary, fontFamily = AppFont, maxLines = 1)
+                Text(text = "${food?.title}", color = MaterialTheme.colorScheme.onSecondary, fontFamily = AppFont, maxLines = 1)
             },
             backgroundColor = MaterialTheme.colorScheme.primary,
             navigationIcon = {

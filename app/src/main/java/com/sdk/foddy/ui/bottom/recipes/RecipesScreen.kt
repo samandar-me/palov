@@ -75,8 +75,8 @@ fun RecipesScreen(navHostController: NavHostController) {
                         food = it,
                         onItemClicked = { food ->
                             navHostController.currentBackStackEntry?.savedStateHandle?.set(
-                                key = "food",
-                                value = food
+                                "food",
+                                food
                             )
                             navHostController.navigate(Graph.DETAIL)
                         }
