@@ -80,7 +80,7 @@ fun RecipeItem(
                 ) {
                     RecipeIcon(
                         icon = R.drawable.ic_baseline_favorite_24,
-                        text = food.likeCount.toString(),
+                        text = food.likeCount.toString(), // food.likeCount.toString(), -> only zero
                         iconColor = Color.Red
                     )
                     RecipeIcon(

@@ -48,7 +48,7 @@ object Versions {
     const val test = "1.1.5"
     const val espresso = "3.5.1"
     const val navigation = "2.6.0-alpha04"
-    const val paging = "0.13.0"
+    const val paging = "0.28.0"
     const val coroutine = "1.6.4"
     const val scope = "2.5.1"
     const val retrofit = "2.9.0"

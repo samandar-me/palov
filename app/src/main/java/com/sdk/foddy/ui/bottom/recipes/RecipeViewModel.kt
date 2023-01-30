@@ -6,12 +6,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sdk.data.util.Constants
+import com.sdk.domain.model.FoodType
 import com.sdk.domain.use_case.base.AllUseCases
 import com.sdk.domain.util.MyResult
 import com.sdk.foddy.util.NetworkHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,50 +22,59 @@ class RecipeViewModel @Inject constructor(
 ) : ViewModel() {
     private val _state: MutableState<RecipesState> = mutableStateOf(RecipesState())
     val state: State<RecipesState> get() = _state
+    private val _foodState: MutableState<FoodType> = mutableStateOf(FoodType())
+    val foodState: State<FoodType> get() = _foodState
+    var firstTime = false
 
     init {
-        getRecipes()
         getFoodState()
+        firstTime = true
     }
 
     private fun getFoodState() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             useCases.getFoodTypeUseCase.invoke(Unit).collectLatest {
-                _state.value = _state.value.copy(foodType = it)
+                _foodState.value = it
             }
         }
     }
 
     fun onEvent(event: RecipeEvent) {
         when (event) {
+            is RecipeEvent.GetAllRecipes -> {
+                getRecipes(query = null,event.foodType.mType, event.foodType.dType)
+            }
             is RecipeEvent.OnSearchFood -> {
                 viewModelScope.launch {
-                    useCases.getFoodTypeUseCase.invoke(Unit).collectLatest {
-                        getRecipes(event.query)
-                    }
+                    getRecipes(event.query,_foodState.value.mType,_foodState.value.dType)
                 }
             }
             is RecipeEvent.OnSaveFoodType -> {
-                viewModelScope.launch {
+                viewModelScope.launch(Dispatchers.IO) {
                     useCases.saveFoodTypeUseCase(event.foodType)
                 }
             }
             is RecipeEvent.OnApplyClicked -> {
                 viewModelScope.launch {
-                    useCases.getFoodTypeUseCase.invoke(Unit).collectLatest {
-                        getRecipes()
-                    }
+                    getRecipes(null,_foodState.value.mType,_foodState.value.dType)
                 }
             }
         }
     }
 
-    private fun getRecipes(query: String? = null) {
-        println("@@@${getQueries(null)}")
+    private fun getRecipes(
+        query: String? = null,
+        type: String,
+        diet: String
+    ) {
         if (helper.isNetworkConnected()) {
             viewModelScope.launch {
                 useCases.getAllRecipesUseCase(
-                    getQueries(query = query)
+                    getQueries(
+                        query = query,
+                        type = type,
+                        diet = diet
+                    )
                 ).collectLatest { response ->
                     when (response) {
                         is MyResult.Loading -> {
@@ -86,29 +96,26 @@ class RecipeViewModel @Inject constructor(
         }
     }
 
-    private fun getQueries(query: String?): HashMap<String, String> {
+    private fun getQueries(
+        query: String?,
+        type: String,
+        diet: String
+    ): HashMap<String, String> {
         val map = HashMap<String, String>()
         query?.let {
             map["query"] = it
         }
-        map["number"] = "20"
-        map["apiKey"] = Constants.API_KEY2
-        map["addRecipeInformation"] = "true"
-        map["fillIngredients"] = "true"
-        map["type"] = _state.value.foodType.mType.lowercase()
-        map["diet"] = _state.value.foodType.dType.lowercase()
-        return map
-    }
-
-    private fun searchQueries(query: String): HashMap<String, String> {
-        val map = HashMap<String, String>()
-        map["query"] = query
-        map["number"] = "20"
+        map["number"] = "30"
         map["apiKey"] = Constants.API_KEY
         map["addRecipeInformation"] = "true"
         map["fillIngredients"] = "true"
-        map["type"] = "main course"
-        map["diet"] = "gluten free"
+        map["type"] = type.lowercase()
+        map["diet"] = diet.lowercase()
         return map
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        firstTime = false
     }
 }

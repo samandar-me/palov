@@ -25,6 +25,7 @@ import com.sdk.foddy.ui.theme.Purple80
 import com.sdk.foddy.util.Graph
 import com.sdk.foddy.util.SearchWidgetState
 import kotlinx.coroutines.launch
+import java.util.Random
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -32,6 +33,12 @@ fun RecipesScreen(navHostController: NavHostController) {
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current as MainActivity
     val viewModel: RecipeViewModel = hiltViewModel()
+    LaunchedEffect(key1 = viewModel.firstTime) {
+        if (viewModel.firstTime) {
+            //viewModel.onEvent(RecipeEvent.GetAllRecipes(viewModel.foodState.value))
+            viewModel.firstTime = false
+        }
+    }
     var searchState by remember {
         mutableStateOf(SearchWidgetState.CLOSED)
     }
@@ -65,7 +72,7 @@ fun RecipesScreen(navHostController: NavHostController) {
         },
         sheetContent = {
             SheetContent(
-                foodState = state.foodType,
+                foodState = viewModel.foodState.value,
                 onChipClicked = { foodType ->
                     viewModel.onEvent(RecipeEvent.OnSaveFoodType(foodType))
                 },
@@ -88,6 +95,11 @@ fun RecipesScreen(navHostController: NavHostController) {
             LazyColumn(
                 contentPadding = PaddingValues(all = 5.dp)
             ) {
+                item {
+                    Button(onClick = { navHostController.navigate(Graph.DETAIL) }) {
+
+                    }
+                }
                 if (state.isLoading.not()) {
                     items(
                         items = state.success,
