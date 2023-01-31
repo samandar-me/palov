@@ -11,5 +11,11 @@ data class Food(
     val description: String,
     val isVegan: Boolean,
     val likeCount: Int,
-    val time: Int
+    val time: Int,
+    val vegan: Boolean,
+    val vegetarian: Boolean,
+    val veryHealthy: Boolean,
+    val dairyFree: Boolean,
+    val cheap: Boolean,
+    val glutenFree: Boolean
 ): Parcelable

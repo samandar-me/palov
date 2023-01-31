@@ -12,6 +12,12 @@ fun Result.toFood(): Food {
         description = summary,
         isVegan = vegan,
         likeCount = Random().nextInt(1000),// we use random like count because food like incoming only zero from backend
-        time = readyInMinutes
+        time = readyInMinutes,
+        vegan = vegan,
+        vegetarian = vegetarian,
+        veryHealthy = veryHealthy,
+        cheap = cheap,
+        glutenFree = glutenFree,
+        dairyFree = dairyFree
     )
 }

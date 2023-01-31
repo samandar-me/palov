@@ -35,7 +35,7 @@ fun RecipesScreen(navHostController: NavHostController) {
     val viewModel: RecipeViewModel = hiltViewModel()
     LaunchedEffect(key1 = viewModel.firstTime) {
         if (viewModel.firstTime) {
-            //viewModel.onEvent(RecipeEvent.GetAllRecipes(viewModel.foodState.value))
+            viewModel.onEvent(RecipeEvent.GetAllRecipes(viewModel.foodState.value))
             viewModel.firstTime = false
         }
     }
@@ -95,11 +95,11 @@ fun RecipesScreen(navHostController: NavHostController) {
             LazyColumn(
                 contentPadding = PaddingValues(all = 5.dp)
             ) {
-                item {
-                    Button(onClick = { navHostController.navigate(Graph.DETAIL) }) {
-
-                    }
-                }
+//                item {
+//                    Button(onClick = { navHostController.navigate(Graph.DETAIL) }) {
+//
+//                    }
+//                }
                 if (state.isLoading.not()) {
                     items(
                         items = state.success,

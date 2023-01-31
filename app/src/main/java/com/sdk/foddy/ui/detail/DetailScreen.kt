@@ -27,10 +27,10 @@ import com.google.accompanist.pager.pagerTabIndicatorOffset
 import com.sdk.domain.model.Food
 import com.sdk.foddy.R
 import com.sdk.foddy.ui.component.BackgroundImage
+import com.sdk.foddy.ui.detail.overview.OverviewScreen
 import com.sdk.foddy.ui.theme.AppFont
 import com.sdk.foddy.ui.theme.ItimFont
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun DetailScreen(
     navHostController: NavHostController,
@@ -85,7 +85,7 @@ fun DetailScreen(
                 }
             }
             when(selectedIndex) {
-                0 -> Text(text = tabs[selectedIndex])
+                0 -> OverviewScreen(nullableFood = food)
                 1 -> Text(text = tabs[selectedIndex])
                 2 -> Text(text = tabs[selectedIndex])
             }

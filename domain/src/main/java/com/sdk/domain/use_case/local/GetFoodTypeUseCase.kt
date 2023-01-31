@@ -6,7 +6,7 @@ import com.sdk.domain.use_case.base.BaseUseCase
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-typealias GetFoodTypeBaseUseCase =  BaseUseCase<Unit,Flow<FoodType>>
+typealias GetFoodTypeBaseUseCase = BaseUseCase<Unit,Flow<FoodType>>
 
 class GetFoodTypeUseCase @Inject constructor(
     private val repository: LocalRepository
