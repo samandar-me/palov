@@ -39,5 +39,6 @@ data class Result(
     val vegetarian: Boolean,
     val veryHealthy: Boolean,
     val veryPopular: Boolean,
-    val weightWatcherSmartPoints: Int
+    val weightWatcherSmartPoints: Int,
+    val analyzedInstructions: List<AnalyzedInstructionsDTOItem>
 )

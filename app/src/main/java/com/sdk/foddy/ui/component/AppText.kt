@@ -4,8 +4,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.max
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextOverflow
 import com.sdk.foddy.ui.theme.AppFont
 
 @Composable
@@ -14,7 +15,8 @@ fun AppText(
     text: String,
     size: Int,
     color: Color,
-    maxLine: Int = 1
+    maxLine: Int = 1,
+    fontFamily: FontFamily = AppFont
 ) {
     Text(
         modifier = modifier,
@@ -22,6 +24,7 @@ fun AppText(
         fontSize = (size).sp,
         maxLines = maxLine,
         color = color,
-        fontFamily = AppFont
+        fontFamily = fontFamily,
+        overflow = TextOverflow.Ellipsis
     )
 }

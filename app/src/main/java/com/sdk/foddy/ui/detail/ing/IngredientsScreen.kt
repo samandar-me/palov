@@ -9,6 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.sdk.domain.model.Ingredient
+import com.sdk.foddy.R
+import com.sdk.foddy.ui.component.BackgroundImage
 import com.sdk.foddy.ui.component.IngredientItem
 import com.sdk.foddy.ui.theme.DescColor
 

@@ -20,6 +20,7 @@ import com.google.accompanist.imageloading.isFinalState
 import com.sdk.domain.model.Food
 import com.sdk.foddy.R
 import com.sdk.foddy.ui.theme.DescColor
+import com.sdk.foddy.ui.theme.ItimFont
 import com.sdk.foddy.ui.theme.Orange
 import com.sdk.foddy.util.toCleanString
 
@@ -73,7 +74,12 @@ fun RecipeItem(
                     color = MaterialTheme.colorScheme.onSecondary,
                     maxLine = 2
                 )
-                AppText(text = food.description.toCleanString(), size = 13, color = DescColor, maxLine = 3)
+                AppText(
+                    text = food.description.toCleanString(),
+                    size = 14,
+                    color = DescColor,
+                    maxLine = 3
+                )
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceAround

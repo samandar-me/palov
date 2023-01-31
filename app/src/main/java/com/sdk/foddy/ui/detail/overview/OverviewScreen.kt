@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -33,6 +34,7 @@ import com.sdk.foddy.ui.component.AppText
 import com.sdk.foddy.ui.component.DetailChip
 import com.sdk.foddy.ui.component.RecipeIcon
 import com.sdk.foddy.ui.theme.DarkColor
+import com.sdk.foddy.ui.theme.ItimFont
 import com.sdk.foddy.ui.theme.LightGray
 import com.sdk.foddy.util.toCleanString
 
@@ -114,7 +116,7 @@ fun DetailSection(food: Food) {
             .fillMaxWidth()
             .padding(10.dp)
     ) {
-        AppText(text = food.title, size = 20, color = MaterialTheme.colorScheme.onSecondary)
+        AppText(text = food.title, size = 20, color = MaterialTheme.colorScheme.onSecondary, maxLine = 3)
         Spacer(modifier = Modifier.height(5.dp))
         LazyHorizontalGrid(
             modifier = Modifier
@@ -129,11 +131,11 @@ fun DetailSection(food: Food) {
             }
         }
         Spacer(modifier = Modifier.height(6.dp))
-        AppText(
+        Text(
             text = food.description.toCleanString(),
-            size = 16,
+            fontSize = 16.sp,
             color = MaterialTheme.colorScheme.onSecondary,
-            maxLine = Int.MAX_VALUE
+            fontFamily = ItimFont
         )
     }
 }
