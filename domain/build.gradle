@@ -45,4 +45,5 @@ dependencies {
     implementation Dependencies.HiltVM
     kapt Dependencies.CompHilt
     implementation Dependencies.HiltNavigation
+    implementation Dependencies.GsonConverter
 }

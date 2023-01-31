@@ -24,14 +24,17 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.google.accompanist.coil.rememberCoilPainter
 import com.google.accompanist.imageloading.isFinalState
 import com.sdk.domain.model.Food
 import com.sdk.foddy.R
+import com.sdk.foddy.ui.component.AppText
 import com.sdk.foddy.ui.component.DetailChip
 import com.sdk.foddy.ui.component.RecipeIcon
 import com.sdk.foddy.ui.theme.DarkColor
 import com.sdk.foddy.ui.theme.LightGray
+import com.sdk.foddy.util.toCleanString
 
 @Composable
 fun OverviewScreen(
@@ -43,13 +46,14 @@ fun OverviewScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(MaterialTheme.colorScheme.onTertiary)
             .verticalScroll(rememberScrollState())
     ) {
         val painter = rememberCoilPainter(request = food.image)
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(260.dp)
+                .height(250.dp)
         ) {
             Image(
                 painter = painter,
@@ -92,7 +96,6 @@ fun OverviewScreen(
             }
         }
         DetailSection(food)
-        food.cheap
     }
 }
 
@@ -106,11 +109,31 @@ fun DetailSection(food: Food) {
         "Healthy" to food.veryHealthy,
         "Cheap" to food.cheap
     )
-    Column(modifier = Modifier.padding(10.dp).height(100.dp)) {
-        LazyHorizontalGrid(rows = GridCells.Fixed(2)) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp)
+    ) {
+        AppText(text = food.title, size = 20, color = MaterialTheme.colorScheme.onSecondary)
+        Spacer(modifier = Modifier.height(5.dp))
+        LazyHorizontalGrid(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(100.dp),
+            rows = GridCells.Fixed(2),
+            verticalArrangement = Arrangement.Center,
+            horizontalArrangement = Arrangement.SpaceAround
+        ) {
             items(statistics.toList()) {
                 DetailChip(text = it.first, isTrue = it.second)
             }
         }
+        Spacer(modifier = Modifier.height(6.dp))
+        AppText(
+            text = food.description.toCleanString(),
+            size = 16,
+            color = MaterialTheme.colorScheme.onSecondary,
+            maxLine = Int.MAX_VALUE
+        )
     }
 }

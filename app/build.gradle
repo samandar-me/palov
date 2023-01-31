@@ -101,4 +101,7 @@ dependencies {
     implementation Dependencies.RoomKtx
     annotationProcessor Dependencies.RoomAn
     kapt Dependencies.RoomComp
+
+    // Jsoup
+    implementation Dependencies.Jsoup
 }

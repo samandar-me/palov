@@ -95,11 +95,6 @@ fun RecipesScreen(navHostController: NavHostController) {
             LazyColumn(
                 contentPadding = PaddingValues(all = 5.dp)
             ) {
-//                item {
-//                    Button(onClick = { navHostController.navigate(Graph.DETAIL) }) {
-//
-//                    }
-//                }
                 if (state.isLoading.not()) {
                     items(
                         items = state.success,
@@ -131,7 +126,8 @@ fun RecipesScreen(navHostController: NavHostController) {
                     }
                 },
                 isLoading = state.isLoading,
-                error = state.error
+                error = state.error,
+                isListEmpty = state.success.isEmpty()
             )
         }
     }
@@ -142,6 +138,7 @@ fun BottomSection(
     onFabClicked: () -> Unit,
     error: String,
     isLoading: Boolean,
+    isListEmpty: Boolean
 ) {
     Box(
         modifier = Modifier
@@ -160,7 +157,7 @@ fun BottomSection(
             )
         }
     }
-    if (error.isNotBlank()) {
+    if (error.isNotBlank() && isListEmpty) {
         ErrorMessage(error)
     }
     if (isLoading) {

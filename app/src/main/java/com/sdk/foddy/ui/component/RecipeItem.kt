@@ -4,9 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -24,6 +21,7 @@ import com.sdk.domain.model.Food
 import com.sdk.foddy.R
 import com.sdk.foddy.ui.theme.DescColor
 import com.sdk.foddy.ui.theme.Orange
+import com.sdk.foddy.util.toCleanString
 
 @Composable
 fun RecipeItem(
@@ -44,7 +42,9 @@ fun RecipeItem(
             rememberCoilPainter(request = food.image).also {
                 Box(
                     contentAlignment = Alignment.Center,
-                    modifier = Modifier.fillMaxSize().weight(1f)
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .weight(1f)
                 ) {
                     if (it.loadState.isFinalState()) { // final state, works when state finished / image uploaded
                         Image(
@@ -73,7 +73,7 @@ fun RecipeItem(
                     color = MaterialTheme.colorScheme.onSecondary,
                     maxLine = 2
                 )
-                AppText(text = food.description, size = 13, color = DescColor, maxLine = 3)
+                AppText(text = food.description.toCleanString(), size = 13, color = DescColor, maxLine = 3)
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceAround

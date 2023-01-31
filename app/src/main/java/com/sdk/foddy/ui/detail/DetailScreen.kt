@@ -27,6 +27,7 @@ import com.google.accompanist.pager.pagerTabIndicatorOffset
 import com.sdk.domain.model.Food
 import com.sdk.foddy.R
 import com.sdk.foddy.ui.component.BackgroundImage
+import com.sdk.foddy.ui.detail.ing.IngredientsScreen
 import com.sdk.foddy.ui.detail.overview.OverviewScreen
 import com.sdk.foddy.ui.theme.AppFont
 import com.sdk.foddy.ui.theme.ItimFont
@@ -40,7 +41,6 @@ fun DetailScreen(
     var selectedIndex by remember {
         mutableStateOf(0)
     }
-    BackgroundImage(image = R.drawable.img)
     Scaffold(
         topBar = {
             TopAppBar(
@@ -86,7 +86,7 @@ fun DetailScreen(
             }
             when(selectedIndex) {
                 0 -> OverviewScreen(nullableFood = food)
-                1 -> Text(text = tabs[selectedIndex])
+                1 -> IngredientsScreen(ingredients = food?.ingredients)
                 2 -> Text(text = tabs[selectedIndex])
             }
         }

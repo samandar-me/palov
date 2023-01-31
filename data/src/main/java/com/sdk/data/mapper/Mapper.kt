@@ -1,7 +1,9 @@
 package com.sdk.data.mapper
 
+import com.sdk.data.remote.model.ExtendedIngredient
 import com.sdk.domain.model.Food
 import com.sdk.data.remote.model.Result
+import com.sdk.domain.model.Ingredient
 import java.util.*
 
 fun Result.toFood(): Food {
@@ -18,6 +20,23 @@ fun Result.toFood(): Food {
         veryHealthy = veryHealthy,
         cheap = cheap,
         glutenFree = glutenFree,
-        dairyFree = dairyFree
+        dairyFree = dairyFree,
+        ingredients = extendedIngredients.map { it.toIngredient() }
+    )
+}
+
+fun ExtendedIngredient.toIngredient(): Ingredient {
+    return Ingredient(
+        id = id,
+        aisle = aisle,
+        consistency = consistency,
+        image = image,
+        meta = meta,
+        name = name,
+        nameClean = nameClean,
+        original = original,
+        originalName = originalName,
+        unit = unit,
+        amount = amount
     )
 }

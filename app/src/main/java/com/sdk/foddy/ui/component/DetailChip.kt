@@ -1,8 +1,6 @@
 package com.sdk.foddy.ui.component
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -11,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.sdk.foddy.R
 
@@ -28,8 +27,9 @@ fun DetailChip(
         Icon(
             painter = painterResource(id = R.drawable.baseline_check_circle_24),
             contentDescription = "",
-            tint = if (isTrue) Color.Green else Color.Black
+            tint = if (isTrue) Color.Green else MaterialTheme.colorScheme.onSecondary
         )
+        Spacer(modifier = Modifier.width(5.dp))
         AppText(text = text, size = 15, color = MaterialTheme.colorScheme.onSecondary)
     }
 }
