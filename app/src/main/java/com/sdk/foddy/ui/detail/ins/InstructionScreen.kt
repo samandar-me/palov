@@ -19,7 +19,7 @@ fun InstructionsScreen(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = DescColor)
+            .background(color = MaterialTheme.colorScheme.onTertiary)
     ) {
         steps?.let {
             items(it) { item ->
