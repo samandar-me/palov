@@ -25,6 +25,6 @@ fun AppText(
         maxLines = maxLine,
         color = color,
         fontFamily = fontFamily,
-        overflow = TextOverflow.Ellipsis
+        overflow = TextOverflow.Ellipsis // ... three dots
     )
 }

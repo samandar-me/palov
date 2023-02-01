@@ -27,6 +27,7 @@ fun ErrorMessage(message: String) {
                 .background(MaterialTheme.colorScheme.primary),
             contentAlignment = Alignment.Center
         ) {
+            println("@@@$message")
             Text(text = message, color = Color.Red, textAlign = TextAlign.Center)
         }
     }

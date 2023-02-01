@@ -19,21 +19,39 @@ data class Food(
     val dairyFree: Boolean,
     val cheap: Boolean,
     val glutenFree: Boolean,
-    @SerializedName("extendedIngredients")
-    val ingredients: List<Ingredient>
+    val ingredients: List<FoodIngredient>,
+    val analyzedIns: List<AnalyzedInstructions>
 ): Parcelable
 
 @Parcelize
-data class Ingredient(
+data class FoodIngredient(
     val aisle: String?,
     val amount: Double,
     val consistency: String,
     val id: Int,
-    val image: String,
+    val ingImage: String?,
     val meta: List<String>,
-    val name: String,
-    val nameClean: String,
+    val name: String?,
+    val nameClean: String?,
     val original: String,
     val originalName: String,
     val unit: String
+): Parcelable
+
+@Parcelize
+data class InsStep(
+    val ingredients: List<InsIngredient>,
+    val number: Int,
+    val step: String
+): Parcelable
+
+@Parcelize
+data class AnalyzedInstructions(
+    val steps: List<InsStep>
+): Parcelable
+@Parcelize
+data class InsIngredient(
+    val id: Int,
+    val image: String,
+    val name: String
 ): Parcelable

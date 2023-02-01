@@ -28,7 +28,7 @@ import com.sdk.foddy.util.toCleanString
 fun RecipeItem(
     modifier: Modifier = Modifier,
     food: Food,
-    onItemClicked: (Food) -> Unit
+    onItemClicked: (Food) -> Unit,
 ) {
     Card(
         modifier = modifier
@@ -40,26 +40,7 @@ fun RecipeItem(
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onTertiary)
     ) {
         Row(modifier = Modifier.fillMaxSize()) {
-            rememberCoilPainter(request = food.image).also {
-                Box(
-                    contentAlignment = Alignment.Center,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .weight(1f)
-                ) {
-                    if (it.loadState.isFinalState()) { // final state, works when state finished / image uploaded
-                        Image(
-                            painter = it,
-                            contentDescription = "Image",
-                            modifier = Modifier
-                                .fillMaxSize(),
-                            contentScale = ContentScale.FillBounds
-                        )
-                    } else {
-                        CircularProgressIndicator(color = MaterialTheme.colorScheme.onSecondary)
-                    }
-                }
-            }
+            AppImage(modifier = Modifier.weight(1f), url = food.image, indicatorSize = 30)
             Column(
                 modifier = Modifier
                     .fillMaxSize()

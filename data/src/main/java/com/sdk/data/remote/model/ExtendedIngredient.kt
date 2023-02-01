@@ -7,8 +7,8 @@ data class ExtendedIngredient(
     val id: Int,
     val image: String,
     val meta: List<String>,
-    val name: String,
-    val nameClean: String,
+    val name: String?,
+    val nameClean: String?,
     val original: String,
     val originalName: String,
     val unit: String

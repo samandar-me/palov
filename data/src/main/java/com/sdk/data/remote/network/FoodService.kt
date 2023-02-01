@@ -10,19 +10,4 @@ interface FoodService {
     suspend fun getAllRecipes(
         @QueryMap map: Map<String, String>
     ): Response<FoodResponseDTO>
-
-    // apiKey = 32423kjrfdkls
-    // diet = mainCourse
-    // number = 10
-
-    @GET("recipes/complexSearch")
-    suspend fun searchFood(
-        @QueryMap searchQueries: Map<String, String>
-    ): Response<FoodResponseDTO>
-    // query = "shorva"
-    // apiKey = 32423kjrfdkls
-    // diet = mainCourse
-    // number = 10
-
-    // bolta-shorva.jpg
 }

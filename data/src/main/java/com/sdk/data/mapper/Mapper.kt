@@ -1,9 +1,7 @@
 package com.sdk.data.mapper
 
-import com.sdk.data.remote.model.ExtendedIngredient
-import com.sdk.domain.model.Food
-import com.sdk.data.remote.model.Result
-import com.sdk.domain.model.Ingredient
+import com.sdk.data.remote.model.*
+import com.sdk.domain.model.*
 import java.util.*
 
 fun Result.toFood(): Food {
@@ -21,22 +19,44 @@ fun Result.toFood(): Food {
         cheap = cheap,
         glutenFree = glutenFree,
         dairyFree = dairyFree,
-        ingredients = extendedIngredients.map { it.toIngredient() }
+        ingredients = extendedIngredients.map { it.toIngredient() },
+        analyzedIns = analyzedInstructions.map { it.toAnalyzed() }
     )
 }
 
-fun ExtendedIngredient.toIngredient(): Ingredient {
-    return Ingredient(
+fun ExtendedIngredient.toIngredient(): FoodIngredient {
+    return FoodIngredient(
         id = id,
         aisle = aisle,
         consistency = consistency,
-        image = image,
+        ingImage = image,
         meta = meta,
         name = name,
         nameClean = nameClean,
         original = original,
         originalName = originalName,
         unit = unit,
-        amount = amount
+        amount = amount,
+    )
+}
+
+fun AnalyzedInstructionsDTOItem.toAnalyzed(): AnalyzedInstructions {
+    return AnalyzedInstructions(
+        steps = steps.map { it.toStep() }
+    )
+}
+
+fun Step.toStep(): InsStep {
+    return InsStep(
+        ingredients = ingredients.map { it.toInsIngredient() },
+        number = number,
+        step = step
+    )
+}
+fun Ingredient.toInsIngredient(): InsIngredient {
+    return InsIngredient(
+        id = id,
+        name = name,
+        image = image
     )
 }
