@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.pagerTabIndicatorOffset
 import com.google.accompanist.pager.rememberPagerState
 import com.sdk.domain.model.Food
 import com.sdk.foddy.ui.detail.ing.IngredientsScreen
@@ -33,7 +34,7 @@ fun DetailScreen(
     food: Food?
 ) {
     val tabs = listOf("Overview", "Ingredients", "Instructions")
-    val pagerState = rememberPagerState(0)
+    val pagerState = rememberPagerState(0) // horizontal pager state
     val scope = rememberCoroutineScope()
     Scaffold(
         topBar = {
@@ -71,7 +72,7 @@ fun DetailScreen(
                 backgroundColor = MaterialTheme.colorScheme.primary,
                 indicator = {
                     TabRowDefaults.Indicator(
-                        modifier = Modifier.tabIndicatorOffset(it[pagerState.currentPage]),
+                        modifier = Modifier.pagerTabIndicatorOffset(pagerState, it), // tab indicator
                         height = 3.dp,
                         color = MaterialTheme.colorScheme.onSecondary
                     )

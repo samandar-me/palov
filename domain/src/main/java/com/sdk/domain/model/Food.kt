@@ -1,12 +1,18 @@
 package com.sdk.domain.model
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
+@Entity
 @Parcelize
 data class Food(
-    val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    @SerializedName("id")
+    val foodId: Int,
     val title: String,
     val image: String,
     val description: String,
@@ -21,7 +27,7 @@ data class Food(
     val glutenFree: Boolean,
     val ingredients: List<FoodIngredient>,
     val analyzedIns: List<AnalyzedInstructions>
-): Parcelable
+) : Parcelable
 
 @Parcelize
 data class FoodIngredient(
@@ -36,22 +42,23 @@ data class FoodIngredient(
     val original: String,
     val originalName: String,
     val unit: String
-): Parcelable
+) : Parcelable
 
 @Parcelize
 data class InsStep(
     val ingredients: List<InsIngredient>,
     val number: Int,
     val step: String
-): Parcelable
+) : Parcelable
 
 @Parcelize
 data class AnalyzedInstructions(
     val steps: List<InsStep>
-): Parcelable
+) : Parcelable
+
 @Parcelize
 data class InsIngredient(
     val id: Int,
     val image: String,
     val name: String
-): Parcelable
+) : Parcelable

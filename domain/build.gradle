@@ -46,4 +46,10 @@ dependencies {
     kapt Dependencies.CompHilt
     implementation Dependencies.HiltNavigation
     implementation Dependencies.GsonConverter
+
+    // Room
+    implementation Dependencies.RoomRun
+    implementation Dependencies.RoomKtx
+    annotationProcessor Dependencies.RoomAn
+    kapt Dependencies.RoomComp
 }
