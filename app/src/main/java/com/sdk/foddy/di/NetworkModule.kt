@@ -9,8 +9,12 @@ import com.sdk.data.util.Constants
 import com.sdk.domain.repository.LocalRepository
 import com.sdk.domain.repository.RemoteRepository
 import com.sdk.domain.use_case.base.AllUseCases
-import com.sdk.domain.use_case.local.GetFoodTypeUseCase
-import com.sdk.domain.use_case.local.SaveFoodTypeUseCase
+import com.sdk.domain.use_case.local.data_store.GetFoodTypeUseCase
+import com.sdk.domain.use_case.local.data_store.SaveFoodTypeUseCase
+import com.sdk.domain.use_case.local.room.DeleteFavoriteFoodUseCase
+import com.sdk.domain.use_case.local.room.GetFavoriteFoodByIdUseCase
+import com.sdk.domain.use_case.local.room.GetFavoriteFoodsUseCase
+import com.sdk.domain.use_case.local.room.SaveFavoriteFoodUseCase
 import com.sdk.domain.use_case.remote.GetAllRecipesUseCase
 import com.sdk.foddy.util.NetworkHelper
 import dagger.Module
@@ -54,11 +58,6 @@ object NetworkModule {
     }
     @Singleton
     @Provides
-    fun provideLocalRepository(manager: DataStoreManager): LocalRepository {
-        return LocalRepositoryImpl(manager)
-    }
-    @Singleton
-    @Provides
     fun provideAllUseCases(
         remoteRepository: RemoteRepository,
         localRepository: LocalRepository
@@ -66,7 +65,11 @@ object NetworkModule {
         return AllUseCases(
             getAllRecipesUseCase = GetAllRecipesUseCase(remoteRepository),
             saveFoodTypeUseCase = SaveFoodTypeUseCase(localRepository),
-            getFoodTypeUseCase = GetFoodTypeUseCase(localRepository)
+            getFoodTypeUseCase = GetFoodTypeUseCase(localRepository),
+            getFavoriteFoodByIdUseCase = GetFavoriteFoodByIdUseCase(localRepository),
+            getFavoriteFoodsUseCase = GetFavoriteFoodsUseCase(localRepository),
+            saveFavoriteFoodUseCase = SaveFavoriteFoodUseCase(localRepository),
+            deleteFavoriteFoodUseCase = DeleteFavoriteFoodUseCase(localRepository)
         )
     }
     @Provides

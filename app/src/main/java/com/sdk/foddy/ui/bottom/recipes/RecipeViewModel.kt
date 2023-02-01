@@ -106,7 +106,7 @@ class RecipeViewModel @Inject constructor(
             map["query"] = it
         }
         map["number"] = "30"
-        map["apiKey"] = Constants.API_KEY3
+        map["apiKey"] = Constants.API_KEY
         map["addRecipeInformation"] = "true"
         map["fillIngredients"] = "true"
         map["type"] = type.lowercase()

@@ -37,6 +37,7 @@ object Dependencies {
     const val RoomComp = "androidx.room:room-compiler:${Versions.room}"
     const val DataStore = "androidx.datastore:datastore-preferences:${Versions.compHilt}"
     const val Jsoup = "org.jsoup:jsoup:${Versions.jsoup}"
+    const val Lottie = "com.airbnb.android:lottie-compose:${Versions.lottie}"
 }
 object Versions {
     const val composeVersion = "1.1.1"
@@ -60,4 +61,5 @@ object Versions {
     const val compHilt = "1.0.0"
     const val room = "2.4.3"
     const val jsoup = "1.13.1"
+    const val lottie = "5.2.0"
 }

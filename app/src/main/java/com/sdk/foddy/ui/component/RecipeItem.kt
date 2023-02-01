@@ -78,7 +78,7 @@ fun RecipeItem(
                     RecipeIcon(
                         icon = R.drawable.ic_baseline_energy_savings_leaf_24,
                         text = "Vegan",
-                        iconColor = if (food.isVegan) Color.Green else Color.Gray
+                        iconColor = if (food.vegan) Color.Green else Color.Gray
                     )
                 }
             }

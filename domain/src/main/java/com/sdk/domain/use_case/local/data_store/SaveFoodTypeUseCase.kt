@@ -1,4 +1,4 @@
-package com.sdk.domain.use_case.local
+package com.sdk.domain.use_case.local.data_store
 
 import com.sdk.domain.model.FoodType
 import com.sdk.domain.repository.LocalRepository

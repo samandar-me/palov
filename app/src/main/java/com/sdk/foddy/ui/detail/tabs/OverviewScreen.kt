@@ -1,33 +1,27 @@
-package com.sdk.foddy.ui.detail.overview
+package com.sdk.foddy.ui.detail.tabs
 
-import androidx.compose.foundation.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material.Chip
-import androidx.compose.material.ChipDefaults
-import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.*
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.accompanist.coil.rememberCoilPainter
-import com.google.accompanist.imageloading.isFinalState
 import com.sdk.domain.model.Food
 import com.sdk.foddy.R
 import com.sdk.foddy.ui.component.AppText
@@ -35,7 +29,6 @@ import com.sdk.foddy.ui.component.DetailChip
 import com.sdk.foddy.ui.component.RecipeIcon
 import com.sdk.foddy.ui.theme.DarkColor
 import com.sdk.foddy.ui.theme.ItimFont
-import com.sdk.foddy.ui.theme.LightGray
 import com.sdk.foddy.util.toCleanString
 
 @Composable

@@ -1,4 +1,4 @@
-package com.sdk.foddy.ui.detail.ins
+package com.sdk.foddy.ui.detail.tabs
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize

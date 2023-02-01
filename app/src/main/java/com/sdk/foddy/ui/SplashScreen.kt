@@ -15,7 +15,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.sdk.foddy.R
-import com.sdk.foddy.ui.component.BackgroundImage
 import com.sdk.foddy.ui.theme.AppFont
 import com.sdk.foddy.util.Graph
 import kotlinx.coroutines.delay

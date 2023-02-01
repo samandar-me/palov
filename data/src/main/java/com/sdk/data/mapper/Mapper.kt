@@ -6,11 +6,11 @@ import java.util.*
 
 fun Result.toFood(): Food {
     return Food(
-        id = id,
+        id = 0,
+        foodId = foodId,
         title = title,
         image = image,
         description = summary,
-        isVegan = vegan,
         likeCount = Random().nextInt(1000),// we use random like count because food like incoming only zero from backend
         time = readyInMinutes,
         vegan = vegan,
@@ -30,7 +30,6 @@ fun ExtendedIngredient.toIngredient(): FoodIngredient {
         aisle = aisle,
         consistency = consistency,
         ingImage = image,
-        meta = meta,
         name = name,
         nameClean = nameClean,
         original = original,

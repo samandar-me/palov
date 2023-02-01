@@ -41,7 +41,8 @@ fun BottomBar(navController: NavHostController) {
                     },
                     label = {
                         Text(text = screen.label)
-                    }
+                    },
+                    colors = NavigationBarItemDefaults.colors()
                 )
             }
         }

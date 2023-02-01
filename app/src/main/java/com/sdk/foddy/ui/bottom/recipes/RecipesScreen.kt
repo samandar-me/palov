@@ -1,13 +1,13 @@
 package com.sdk.foddy.ui.bottom.recipes
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.ShapeDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,7 +25,6 @@ import com.sdk.foddy.ui.theme.Purple80
 import com.sdk.foddy.util.Graph
 import com.sdk.foddy.util.SearchWidgetState
 import kotlinx.coroutines.launch
-import java.util.Random
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -89,16 +88,16 @@ fun RecipesScreen(navHostController: NavHostController) {
     ) {
         Surface(
             modifier =
-            Modifier.blur(if (bottomSheetScaffoldState.bottomSheetState.isExpanded) 5.dp else 0.dp)
+            Modifier.blur(if (bottomSheetScaffoldState.bottomSheetState.isExpanded) 5.dp else 0.dp),
+            color = androidx.compose.material3.MaterialTheme.colorScheme.secondaryContainer
         ) {
-            BackgroundImage(image = R.drawable.img_1)
             LazyColumn(
                 contentPadding = PaddingValues(all = 5.dp)
             ) {
                 if (state.isLoading.not()) {
                     items(
                         items = state.success,
-                        key = { it.id }
+                        key = { it.foodId }
                     ) {
                         RecipeItem(
                             food = it,
@@ -138,7 +137,7 @@ fun BottomSection(
     onFabClicked: () -> Unit,
     error: String,
     isLoading: Boolean,
-    isListEmpty: Boolean
+    isListEmpty: Boolean,
 ) {
     Box(
         modifier = Modifier

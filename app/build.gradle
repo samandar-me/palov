@@ -104,4 +104,7 @@ dependencies {
 
     // Jsoup
     implementation Dependencies.Jsoup
+
+    // Lottie
+    implementation Dependencies.Lottie
 }

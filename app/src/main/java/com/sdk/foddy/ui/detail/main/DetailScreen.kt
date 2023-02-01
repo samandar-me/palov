@@ -1,28 +1,28 @@
-package com.sdk.foddy.ui.detail
+package com.sdk.foddy.ui.detail.main
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
-import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.pagerTabIndicatorOffset
 import com.google.accompanist.pager.rememberPagerState
 import com.sdk.domain.model.Food
-import com.sdk.foddy.ui.detail.ing.IngredientsScreen
-import com.sdk.foddy.ui.detail.ins.InstructionsScreen
-import com.sdk.foddy.ui.detail.overview.OverviewScreen
+import com.sdk.foddy.ui.detail.tabs.*
 import com.sdk.foddy.ui.theme.AppFont
 import com.sdk.foddy.ui.theme.ItimFont
 import kotlinx.coroutines.launch
@@ -31,11 +31,17 @@ import kotlinx.coroutines.launch
 @Composable
 fun DetailScreen(
     navHostController: NavHostController,
-    food: Food?
+    food: Food?,
 ) {
+    val viewModel: DetailViewModel = hiltViewModel()
     val tabs = listOf("Overview", "Ingredients", "Instructions")
     val pagerState = rememberPagerState(0) // horizontal pager state
     val scope = rememberCoroutineScope()
+    LaunchedEffect(key1 = true) {
+        food?.let {
+            viewModel.onEvent(DetailEvent.OnCheckFood(it.foodId))
+        }
+    }
     Scaffold(
         topBar = {
             TopAppBar(
@@ -54,11 +60,14 @@ fun DetailScreen(
                 },
                 actions = {
                     IconButton(onClick = {
-                        // save to room this favorite food
+                        food?.let {
+                            viewModel.onEvent(DetailEvent.OnUpdateFood(it))
+                        }
                     }) {
                         Icon(
-                            imageVector = Icons.Filled.FavoriteBorder,
-                            contentDescription = "Favorite"
+                            imageVector = if (viewModel.isFoodSaved.value) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                            contentDescription = "Favorite",
+                            tint = if (viewModel.isFoodSaved.value) Color.Red else MaterialTheme.colorScheme.onSecondary
                         )
                     }
                 },
@@ -72,7 +81,10 @@ fun DetailScreen(
                 backgroundColor = MaterialTheme.colorScheme.primary,
                 indicator = {
                     TabRowDefaults.Indicator(
-                        modifier = Modifier.pagerTabIndicatorOffset(pagerState, it), // tab indicator
+                        modifier = Modifier.pagerTabIndicatorOffset(
+                            pagerState,
+                            it
+                        ), // tab indicator
                         height = 3.dp,
                         color = MaterialTheme.colorScheme.onSecondary
                     )

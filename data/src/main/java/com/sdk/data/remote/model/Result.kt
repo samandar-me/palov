@@ -1,5 +1,7 @@
 package com.sdk.data.remote.model
 
+import com.google.gson.annotations.SerializedName
+
 data class Result(
     val aggregateLikes: Int,
     val author: String,
@@ -14,7 +16,8 @@ data class Result(
     val gaps: String,
     val glutenFree: Boolean,
     val healthScore: Int,
-    val id: Int,
+    @SerializedName("id")
+    val foodId: Int,
     val image: String,
     val imageType: String,
     val license: String,

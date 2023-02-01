@@ -24,7 +24,6 @@ fun SheetContent(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp))
             .background(MaterialTheme.colorScheme.background)
             .height(350.dp),
         verticalArrangement = Arrangement.SpaceEvenly
