@@ -36,7 +36,7 @@ private val LightColorPalette = lightColorScheme(
 
 @Composable
 fun FooddyTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    darkTheme: Boolean,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {

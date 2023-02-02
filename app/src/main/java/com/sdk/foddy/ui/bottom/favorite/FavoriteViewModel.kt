@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sdk.domain.use_case.base.AllUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -21,6 +22,14 @@ class FavoriteViewModel @Inject constructor(
 
     init {
         getAllFavoriteFoods()
+    }
+
+    fun onEvent(event: FavoriteEvent) {
+        if (event is FavoriteEvent.OnDeleteAllFavoriteFoods) {
+            viewModelScope.launch(Dispatchers.IO) {
+                useCases.deleteAllFavoriteFoodsUseCase(Unit)
+            }
+        }
     }
 
     private fun getAllFavoriteFoods() {

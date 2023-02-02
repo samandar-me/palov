@@ -10,11 +10,10 @@ import com.sdk.domain.repository.LocalRepository
 import com.sdk.domain.repository.RemoteRepository
 import com.sdk.domain.use_case.base.AllUseCases
 import com.sdk.domain.use_case.local.data_store.GetFoodTypeUseCase
+import com.sdk.domain.use_case.local.data_store.GetThemeUseCase
 import com.sdk.domain.use_case.local.data_store.SaveFoodTypeUseCase
-import com.sdk.domain.use_case.local.room.DeleteFavoriteFoodUseCase
-import com.sdk.domain.use_case.local.room.GetFavoriteFoodByIdUseCase
-import com.sdk.domain.use_case.local.room.GetFavoriteFoodsUseCase
-import com.sdk.domain.use_case.local.room.SaveFavoriteFoodUseCase
+import com.sdk.domain.use_case.local.data_store.SaveThemeUseCase
+import com.sdk.domain.use_case.local.room.*
 import com.sdk.domain.use_case.remote.GetAllRecipesUseCase
 import com.sdk.foddy.util.NetworkHelper
 import dagger.Module
@@ -39,6 +38,7 @@ object NetworkModule {
             .readTimeout(30, TimeUnit.SECONDS)
             .build()
     }
+
     @Provides
     @Singleton
     fun provideFoodService(
@@ -51,11 +51,13 @@ object NetworkModule {
             .build()
             .create(FoodService::class.java)
     }
+
     @Singleton
     @Provides
     fun provideRemoteRepository(service: FoodService): RemoteRepository {
         return RemoteRepositoryImpl(service)
     }
+
     @Singleton
     @Provides
     fun provideAllUseCases(
@@ -69,9 +71,13 @@ object NetworkModule {
             getFavoriteFoodByIdUseCase = GetFavoriteFoodByIdUseCase(localRepository),
             getFavoriteFoodsUseCase = GetFavoriteFoodsUseCase(localRepository),
             saveFavoriteFoodUseCase = SaveFavoriteFoodUseCase(localRepository),
-            deleteFavoriteFoodUseCase = DeleteFavoriteFoodUseCase(localRepository)
+            deleteFavoriteFoodUseCase = DeleteFavoriteFoodUseCase(localRepository),
+            deleteAllFavoriteFoodsUseCase = DeleteAllFavoriteFoodsUseCase(localRepository),
+            saveThemeUseCase = SaveThemeUseCase(localRepository),
+            getThemeUseCase = GetThemeUseCase(localRepository)
         )
     }
+
     @Provides
     @Singleton
     fun provideNetworkHelper(@ApplicationContext context: Context): NetworkHelper {

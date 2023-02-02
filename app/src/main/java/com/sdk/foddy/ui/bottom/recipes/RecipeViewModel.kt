@@ -32,7 +32,7 @@ class RecipeViewModel @Inject constructor(
     }
 
     private fun getFoodState() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             useCases.getFoodTypeUseCase.invoke(Unit).collectLatest {
                 _foodState.value = it
             }

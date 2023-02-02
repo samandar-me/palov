@@ -1,10 +1,7 @@
 package com.sdk.domain.use_case.base
 
 import com.sdk.domain.use_case.local.data_store.*
-import com.sdk.domain.use_case.local.room.DeleteFavoriteFoodUseCase
-import com.sdk.domain.use_case.local.room.GetFavoriteFoodByIdUseCase
-import com.sdk.domain.use_case.local.room.GetFavoriteFoodsUseCase
-import com.sdk.domain.use_case.local.room.SaveFavoriteFoodUseCase
+import com.sdk.domain.use_case.local.room.*
 import com.sdk.domain.use_case.remote.GetAllRecipesUseCase
 
 data class AllUseCases(
@@ -14,5 +11,8 @@ data class AllUseCases(
     val deleteFavoriteFoodUseCase: DeleteFavoriteFoodUseCase,
     val getFavoriteFoodByIdUseCase: GetFavoriteFoodByIdUseCase,
     val getFavoriteFoodsUseCase: GetFavoriteFoodsUseCase,
-    val saveFavoriteFoodUseCase: SaveFavoriteFoodUseCase
+    val saveFavoriteFoodUseCase: SaveFavoriteFoodUseCase,
+    val deleteAllFavoriteFoodsUseCase: DeleteAllFavoriteFoodsUseCase,
+    val saveThemeUseCase: SaveThemeUseCase,
+    val getThemeUseCase: GetThemeUseCase
 )
