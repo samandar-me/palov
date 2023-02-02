@@ -21,7 +21,7 @@ fun ThemeItem(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .height(100.dp)
+            .height(90.dp)
             .padding(vertical = 8.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
         onClick = onClick,
@@ -44,7 +44,7 @@ fun ThemeItem(
             Spacer(modifier = Modifier.width(10.dp))
             Text(
                 text = title,
-                fontSize = 19.sp,
+                fontSize = 18.sp,
                 color = MaterialTheme.colorScheme.onSecondary,
                 textAlign = TextAlign.Center
             )
