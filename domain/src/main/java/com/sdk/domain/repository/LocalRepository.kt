@@ -8,7 +8,9 @@ interface LocalRepository {
     suspend fun saveFoodType(foodType: FoodType)
     fun getFoodType(): Flow<FoodType>
     suspend fun saveTheme(index: Int)
-    suspend fun getTheme(): Flow<Int>
+    fun getTheme(): Flow<Int>
+    suspend fun saveUserVisiting(boolean: Boolean)
+    fun getUserVisiting(): Flow<Boolean>
 
     suspend fun saveFavoriteFood(food: Food)
     fun getFoodById(id: Int): Flow<Food?>

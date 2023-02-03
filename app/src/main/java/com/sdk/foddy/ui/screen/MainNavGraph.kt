@@ -5,11 +5,12 @@ import androidx.navigation.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.sdk.domain.model.Food
-import com.sdk.foddy.ui.SplashScreen
 import com.sdk.foddy.ui.bottom.favorite.FavoriteScreen
 import com.sdk.foddy.ui.bottom.recipes.RecipesScreen
 import com.sdk.foddy.ui.bottom.settings.SettingsScreen
 import com.sdk.foddy.ui.detail.main.DetailScreen
+import com.sdk.foddy.ui.onboarding.MainPager
+import com.sdk.foddy.ui.splash.SplashScreen
 import com.sdk.foddy.util.Graph
 
 fun NavGraphBuilder.splashNavGraph(navHostController: NavHostController) {
@@ -21,6 +22,9 @@ fun NavGraphBuilder.splashNavGraph(navHostController: NavHostController) {
             route = "SPLASH"
         ) {
             SplashScreen(navHostController)
+        }
+        composable(route = "ON_BOARDING") {
+            MainPager(navHostController = navHostController)
         }
     }
 }

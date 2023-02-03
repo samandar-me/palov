@@ -14,5 +14,7 @@ data class AllUseCases(
     val saveFavoriteFoodUseCase: SaveFavoriteFoodUseCase,
     val deleteAllFavoriteFoodsUseCase: DeleteAllFavoriteFoodsUseCase,
     val saveThemeUseCase: SaveThemeUseCase,
-    val getThemeUseCase: GetThemeUseCase
+    val getThemeUseCase: GetThemeUseCase,
+    val saveUserVisitingUseCase: SaveUserVisitingUseCase,
+    val getUserVisitingUseCase: GetUserVisitingUseCase
 )

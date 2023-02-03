@@ -1,4 +1,4 @@
-package com.sdk.foddy.ui
+package com.sdk.foddy.ui.splash
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.sdk.foddy.R
 import com.sdk.foddy.ui.theme.AppFont
@@ -21,9 +22,11 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(navHostController: NavHostController) {
+    val viewModel: SplashViewModel = hiltViewModel()
     LaunchedEffect(key1 = true) {
+        val route = if (viewModel.userState.value) Graph.MAIN else "ON_BOARDING"
         delay(2000L)
-        navHostController.navigate(Graph.MAIN) {
+        navHostController.navigate(route = route) {
             popUpTo(Graph.SPLASH) {
                 inclusive = true
             }

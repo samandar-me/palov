@@ -2,10 +2,7 @@ package com.sdk.data.local.manager
 
 import android.content.Context
 import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.intPreferencesKey
-import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import com.sdk.domain.model.FoodType
 import kotlinx.coroutines.flow.Flow
@@ -21,6 +18,8 @@ class DataStoreManager(private val context: Context) {
         val dType = stringPreferencesKey("dType")
 
         val themIndex = intPreferencesKey("themeIndex")
+
+        val isUserVisited = booleanPreferencesKey("isUserVisited")
     }
 
     suspend fun saveMealType(foodType: FoodType) {
@@ -49,5 +48,15 @@ class DataStoreManager(private val context: Context) {
 
     fun getTheme(): Flow<Int> = context.dataStore.data.map {
         it[themIndex] ?: 0
+    }
+
+    suspend fun saveUserVisiting(boolean: Boolean) {
+        context.dataStore.edit {
+            it[isUserVisited] = boolean
+        }
+    }
+
+    fun getUserVisiting(): Flow<Boolean> = context.dataStore.data.map {
+        it[isUserVisited] ?: false
     }
 }

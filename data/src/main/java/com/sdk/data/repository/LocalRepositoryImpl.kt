@@ -24,8 +24,16 @@ class LocalRepositoryImpl @Inject constructor(
         dataStoreManager.saveTheme(index)
     }
 
-    override suspend fun getTheme(): Flow<Int> {
+    override fun getTheme(): Flow<Int> {
         return dataStoreManager.getTheme()
+    }
+
+    override suspend fun saveUserVisiting(boolean: Boolean) {
+        dataStoreManager.saveUserVisiting(boolean)
+    }
+
+    override fun getUserVisiting(): Flow<Boolean> {
+        return dataStoreManager.getUserVisiting()
     }
 
     override suspend fun saveFavoriteFood(food: Food) {

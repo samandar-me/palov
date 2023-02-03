@@ -9,10 +9,7 @@ import com.sdk.data.util.Constants
 import com.sdk.domain.repository.LocalRepository
 import com.sdk.domain.repository.RemoteRepository
 import com.sdk.domain.use_case.base.AllUseCases
-import com.sdk.domain.use_case.local.data_store.GetFoodTypeUseCase
-import com.sdk.domain.use_case.local.data_store.GetThemeUseCase
-import com.sdk.domain.use_case.local.data_store.SaveFoodTypeUseCase
-import com.sdk.domain.use_case.local.data_store.SaveThemeUseCase
+import com.sdk.domain.use_case.local.data_store.*
 import com.sdk.domain.use_case.local.room.*
 import com.sdk.domain.use_case.remote.GetAllRecipesUseCase
 import com.sdk.foddy.util.NetworkHelper
@@ -74,7 +71,9 @@ object NetworkModule {
             deleteFavoriteFoodUseCase = DeleteFavoriteFoodUseCase(localRepository),
             deleteAllFavoriteFoodsUseCase = DeleteAllFavoriteFoodsUseCase(localRepository),
             saveThemeUseCase = SaveThemeUseCase(localRepository),
-            getThemeUseCase = GetThemeUseCase(localRepository)
+            getThemeUseCase = GetThemeUseCase(localRepository),
+            getUserVisitingUseCase = GetUserVisitingUseCase(localRepository),
+            saveUserVisitingUseCase = SaveUserVisitingUseCase(localRepository)
         )
     }
 
