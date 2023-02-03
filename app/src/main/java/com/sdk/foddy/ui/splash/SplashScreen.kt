@@ -46,6 +46,10 @@ fun SplashScreen(navHostController: NavHostController) {
             fontFamily = AppFont
         )
         Spacer(modifier = Modifier.height(20.dp))
-        Image(painter = painterResource(id = R.drawable.back), contentDescription = "")
+        Image(
+            painter = painterResource(id = R.drawable.back),
+            contentDescription = "Splash Logo",
+            modifier = Modifier.size(200.dp)
+        )
     }
 }

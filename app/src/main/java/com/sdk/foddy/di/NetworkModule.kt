@@ -27,8 +27,8 @@ import javax.inject.Singleton
 @Module(includes = [DatabaseModule::class])
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-    @Provides
-    @Singleton
+
+    @[Provides Singleton]
     fun provideOkhttp(): OkHttpClient {
         return OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
@@ -36,8 +36,7 @@ object NetworkModule {
             .build()
     }
 
-    @Provides
-    @Singleton
+    @[Provides Singleton]
     fun provideFoodService(
         okHttpClient: OkHttpClient
     ): FoodService {
@@ -49,14 +48,12 @@ object NetworkModule {
             .create(FoodService::class.java)
     }
 
-    @Singleton
-    @Provides
+    @[Provides Singleton]
     fun provideRemoteRepository(service: FoodService): RemoteRepository {
         return RemoteRepositoryImpl(service)
     }
 
-    @Singleton
-    @Provides
+    @[Provides Singleton]
     fun provideAllUseCases(
         remoteRepository: RemoteRepository,
         localRepository: LocalRepository
@@ -77,8 +74,7 @@ object NetworkModule {
         )
     }
 
-    @Provides
-    @Singleton
+    @[Provides Singleton]
     fun provideNetworkHelper(@ApplicationContext context: Context): NetworkHelper {
         return NetworkHelper(context)
     }

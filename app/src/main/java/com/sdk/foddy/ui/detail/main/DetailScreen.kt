@@ -104,7 +104,8 @@ fun DetailScreen(
                                 color = MaterialTheme.colorScheme.onSecondary,
                                 fontFamily = ItimFont,
                                 fontSize = 17.sp,
-                                overflow = TextOverflow.Ellipsis
+                                overflow = TextOverflow.Ellipsis,
+                                maxLines = 1
                             )
                         }
                     )

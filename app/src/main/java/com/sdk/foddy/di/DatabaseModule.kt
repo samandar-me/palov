@@ -17,18 +17,17 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
-    @Provides
-    @Singleton
+
+    @[Provides Singleton]
     fun provideDataStoreManager(@ApplicationContext context: Context): DataStoreManager {
         return DataStoreManager(context)
     }
-    @Singleton
-    @Provides
+    @[Provides Singleton]
     fun provideLocalRepository(manager: DataStoreManager,dao: FoodDao): LocalRepository {
         return LocalRepositoryImpl(manager, dao)
     }
-    @Provides
-    @Singleton
+
+    @[Provides Singleton]
     fun provideFoodDatabase(
         @ApplicationContext context: Context
     ): FoodDatabase {
@@ -38,8 +37,7 @@ object DatabaseModule {
             "Food.db"
         ).build()
     }
-    @Provides
-    @Singleton
+    @[Provides Singleton]
     fun providesFoodDao(database: FoodDatabase): FoodDao {
         return database.dao
     }
