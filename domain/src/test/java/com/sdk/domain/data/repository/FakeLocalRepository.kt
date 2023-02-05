@@ -9,29 +9,32 @@ import kotlinx.coroutines.flow.flow
 class FakeLocalRepository : LocalRepository {
 
     private val fakeFoodList = mutableListOf<Food>()
+    private var foodType = FoodType()
+    private var isUserVisited = false
+    private var savedIndex = 0
 
     override suspend fun saveFoodType(foodType: FoodType) {
-        TODO("Not yet implemented")
+        this.foodType = foodType
     }
 
     override fun getFoodType(): Flow<FoodType> {
-        TODO("Not yet implemented")
+        return flow { emit(foodType) }
     }
 
     override suspend fun saveTheme(index: Int) {
-        TODO("Not yet implemented")
+        savedIndex = index
     }
 
     override fun getTheme(): Flow<Int> {
-        TODO("Not yet implemented")
+        return flow { emit(savedIndex) }
     }
 
     override suspend fun saveUserVisiting(boolean: Boolean) {
-        TODO("Not yet implemented")
+        isUserVisited = boolean
     }
 
     override fun getUserVisiting(): Flow<Boolean> {
-        TODO("Not yet implemented")
+        return flow { emit(isUserVisited) }
     }
 
     override suspend fun saveFavoriteFood(food: Food) {
