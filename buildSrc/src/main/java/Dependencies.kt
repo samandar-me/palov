@@ -1,4 +1,3 @@
-
 object Dependencies {
     const val DaggerHilt = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
     const val KotlinVersion = "androidx.core:core-ktx:${Versions.kotlin}"
@@ -15,9 +14,11 @@ object Dependencies {
     const val TestMan = "androidx.compose.ui:ui-test-manifest:${Versions.composeVersion}"
     const val ComposeNavigation = "androidx.navigation:navigation-compose:${Versions.navigation}"
     const val ComposePager = "com.google.accompanist:accompanist-pager:${Versions.paging}"
-    const val PagerIndicator = "com.google.accompanist:accompanist-pager-indicators:${Versions.paging}"
+    const val PagerIndicator =
+        "com.google.accompanist:accompanist-pager-indicators:${Versions.paging}"
     const val Coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine}"
-    const val AndroidCoroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}"
+    const val AndroidCoroutine =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}"
     const val LifecycleScope = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.scope}"
     const val RuntimeScope = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.scope}"
     const val Retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
@@ -38,7 +39,16 @@ object Dependencies {
     const val DataStore = "androidx.datastore:datastore-preferences:${Versions.compHilt}"
     const val Jsoup = "org.jsoup:jsoup:${Versions.jsoup}"
     const val Lottie = "com.airbnb.android:lottie-compose:${Versions.lottie}"
+
+    const val JUnitTest = "junit:junit:${Versions.junitTest}"
+    const val Mockito = "org.mockito:mockito-core:${Versions.mockito}"
+    const val ArchTesting = "android.arch.core:core-testing:${Versions.coreTesting}"
+    const val Truth = "com.google.truth:truth:${Versions.truth}"
+    const val HiltTest = "com.google.dagger:hilt-android-testing:${Versions.hiltTest}"
+    const val HiltAndroidTest = "com.google.dagger:hilt-android-testing:${Versions.hiltTest}"
+    const val KaptTest = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
 }
+
 object Versions {
     const val composeVersion = "1.1.1"
     const val hilt = "2.40.5"
@@ -62,4 +72,9 @@ object Versions {
     const val room = "2.4.3"
     const val jsoup = "1.13.1"
     const val lottie = "5.2.0"
+    const val junitTest = "4.13.2"
+    const val coreTesting = "1.1.1"
+    const val mockito = "2.11.0"
+    const val truth = "1.1"
+    const val hiltTest = "2.28-alpha"
 }

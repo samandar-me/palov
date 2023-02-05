@@ -52,4 +52,13 @@ dependencies {
     implementation Dependencies.RoomKtx
     annotationProcessor Dependencies.RoomAn
     kapt Dependencies.RoomComp
+
+    // Testing
+    testImplementation Dependencies.JUnitTest
+    testImplementation Dependencies.Mockito
+    testImplementation Dependencies.ArchTesting
+    testImplementation Dependencies.Truth
+    testImplementation Dependencies.HiltTest
+    androidTestImplementation Dependencies.HiltAndroidTest
+    kaptTest(Dependencies.KaptTest)
 }
