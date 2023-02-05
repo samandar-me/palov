@@ -107,4 +107,7 @@ dependencies {
 
     // Lottie
     implementation Dependencies.Lottie
+
+    testImplementation Dependencies.HiltTest
+    androidTestImplementation Dependencies.HiltAndroidTest
 }
