@@ -6,7 +6,6 @@ object Dependencies {
     const val ComposeUi = "androidx.compose.ui:ui:${Versions.composeVersion}"
     const val CompPreview = "androidx.compose.ui:ui-tooling-preview:${Versions.composeVersion}"
     const val MaterialDesign = "androidx.compose.material3:material3:${Versions.m3}"
-    const val JUnit = "junit:junit:${Versions.jUnit}"
     const val ExtUnit = "androidx.test.ext:junit:${Versions.test}"
     const val Espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
     const val ComposeTest = "androidx.compose.ui:ui-test-junit4:${Versions.composeVersion}"
@@ -40,13 +39,21 @@ object Dependencies {
     const val Jsoup = "org.jsoup:jsoup:${Versions.jsoup}"
     const val Lottie = "com.airbnb.android:lottie-compose:${Versions.lottie}"
 
+    const val CoreTest =  "androidx.test:core:${Versions.coreTesting}"
     const val JUnitTest = "junit:junit:${Versions.junitTest}"
-    const val Mockito = "org.mockito:mockito-core:${Versions.mockito}"
-    const val ArchTesting = "android.arch.core:core-testing:${Versions.coreTesting}"
+    const val ArchTest = "androidx.arch.core:core-testing:${Versions.archCore}"
+    const val CoroutineTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutineTest}"
     const val Truth = "com.google.truth:truth:${Versions.truth}"
+    const val ComposeUITest = "androidx.compose.ui:ui-test-manifest:${Versions.composeUITest}"
+
     const val HiltTest = "com.google.dagger:hilt-android-testing:${Versions.hiltTest}"
-    const val HiltAndroidTest = "com.google.dagger:hilt-android-testing:${Versions.hiltTest}"
-    const val KaptTest = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
+    const val HiltAndroidTest = "com.google.dagger:hilt-android-compiler:${Versions.hiltTest}"
+    const val ExtUnitTest = "androidx.test.ext:junit:${Versions.truth}"
+    const val KtxTest = "androidx.test:core-ktx:${Versions.coreTesting}"
+    const val Runner = "androidx.test:runner:${Versions.coreTesting}"
+
+    // Navigation Compose Component
+    const val NavigationTesting = "androidx.navigation:navigation-testing:${Versions.navTest}"
 }
 
 object Versions {
@@ -56,7 +63,6 @@ object Versions {
     const val lifeCycleKtx = "2.3.1"
     const val appComp = "1.3.1"
     const val m3 = "1.1.0-alpha04"
-    const val jUnit = "4.13.2"
     const val test = "1.1.5"
     const val espresso = "3.5.1"
     const val navigation = "2.6.0-alpha04"
@@ -72,9 +78,13 @@ object Versions {
     const val room = "2.4.3"
     const val jsoup = "1.13.1"
     const val lottie = "5.2.0"
+
     const val junitTest = "4.13.2"
-    const val coreTesting = "1.1.1"
-    const val mockito = "2.11.0"
-    const val truth = "1.1"
-    const val hiltTest = "2.28-alpha"
+    const val coreTesting = "1.4.0"
+    const val archCore = "2.1.0"
+    const val coroutineTest = "1.5.1"
+    const val truth = "1.1.3"
+    const val composeUITest = "1.1.0-alpha04"
+    const val hiltTest = "2.37"
+    const val navTest = "2.5.3"
 }

@@ -1,7 +1,6 @@
 package com.sdk.foddy.ui.bottom.recipes
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -15,6 +14,8 @@ import androidx.compose.ui.draw.blur
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTag
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -55,6 +56,9 @@ fun RecipesScreen(navHostController: NavHostController) {
     }
 
     BottomSheetScaffold(
+        modifier = Modifier.semantics {
+            testTag = "RecipeBackground"
+        },
         topBar = {
             MainTopBar(
                 searchWidgetState = searchState,
@@ -92,7 +96,10 @@ fun RecipesScreen(navHostController: NavHostController) {
             color = androidx.compose.material3.MaterialTheme.colorScheme.secondaryContainer
         ) {
             LazyColumn(
-                contentPadding = PaddingValues(all = 5.dp)
+                contentPadding = PaddingValues(all = 5.dp),
+                modifier = Modifier.semantics {
+                    testTag = "RecipeScreenLazyColumn"
+                }
             ) {
                 if (state.isLoading.not()) {
                     items(
@@ -152,7 +159,7 @@ fun BottomSection(
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.baseline_restaurant_menu_24),
-                contentDescription = "Meal"
+                contentDescription = "MealFab"
             )
         }
     }

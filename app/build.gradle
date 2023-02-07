@@ -17,7 +17,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.sdk.foddy.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary true
         }
@@ -59,7 +59,7 @@ dependencies {
     implementation Dependencies.MaterialDesign
     implementation project(path: ':data')
     implementation project(path: ':domain')
-    testImplementation Dependencies.JUnit
+    testImplementation Dependencies.JUnitTest
     androidTestImplementation Dependencies.ExtUnit
     androidTestImplementation Dependencies.Espresso
     androidTestImplementation Dependencies.ComposeTest
@@ -108,6 +108,21 @@ dependencies {
     // Lottie
     implementation Dependencies.Lottie
 
-    testImplementation Dependencies.HiltTest
-    androidTestImplementation Dependencies.HiltAndroidTest
+    // Test
+    testImplementation Dependencies.CoreTest
+    testImplementation Dependencies.JUnitTest
+    testImplementation Dependencies.ArchTest
+    testImplementation Dependencies.CoroutineTest
+    androidTestImplementation Dependencies.Truth
+    debugImplementation Dependencies.ComposeUITest
+
+    androidTestImplementation Dependencies.HiltTest
+    kaptAndroidTest Dependencies.HiltAndroidTest
+    androidTestImplementation Dependencies.JUnitTest
+    androidTestImplementation Dependencies.CoroutineTest
+    androidTestImplementation Dependencies.ArchTest
+    androidTestImplementation Dependencies.KtxTest
+    androidTestImplementation Dependencies.ExtUnitTest
+    androidTestImplementation Dependencies.Runner
+    androidTestImplementation Dependencies.NavigationTesting
 }

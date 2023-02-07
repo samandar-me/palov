@@ -35,7 +35,7 @@ android {
 dependencies {
 
     implementation Dependencies.KotlinVersion
-    testImplementation Dependencies.JUnit
+    testImplementation Dependencies.JUnitTest
     androidTestImplementation Dependencies.ExtUnit
     androidTestImplementation Dependencies.Espresso
 
@@ -55,10 +55,9 @@ dependencies {
 
     // Testing
     testImplementation Dependencies.JUnitTest
-    testImplementation Dependencies.Mockito
-    testImplementation Dependencies.ArchTesting
+    testImplementation Dependencies.ArchTest
     testImplementation Dependencies.Truth
     testImplementation Dependencies.HiltTest
     androidTestImplementation Dependencies.HiltAndroidTest
-    kaptTest(Dependencies.KaptTest)
+    kaptTest(Dependencies.HiltAndroidTest)
 }

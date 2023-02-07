@@ -37,7 +37,7 @@ dependencies {
     implementation Dependencies.LifeCycleKtx
     implementation Dependencies.AppCompat
     implementation project(path: ':domain')
-    testImplementation Dependencies.JUnit
+    testImplementation Dependencies.JUnitTest
     androidTestImplementation Dependencies.ExtUnit
     androidTestImplementation Dependencies.Espresso
 

@@ -29,7 +29,6 @@ import com.sdk.foddy.ui.component.LoadingIcon
 import com.sdk.foddy.ui.component.LottieAnim
 import com.sdk.foddy.ui.component.RecipeItem
 import com.sdk.foddy.ui.theme.AppFont
-import com.sdk.foddy.ui.theme.ItimFont
 import com.sdk.foddy.ui.theme.Purple80
 import com.sdk.foddy.util.Graph
 

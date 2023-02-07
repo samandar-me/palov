@@ -2,10 +2,9 @@ package com.sdk.foddy.ui.splash
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -48,8 +47,7 @@ fun SplashScreen(navHostController: NavHostController) {
         Spacer(modifier = Modifier.height(20.dp))
         Image(
             painter = painterResource(id = R.drawable.back),
-            contentDescription = "Splash Logo",
-            modifier = Modifier.size(200.dp)
+            contentDescription = "Splash Logo"
         )
     }
 }
