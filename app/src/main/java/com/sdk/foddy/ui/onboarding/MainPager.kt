@@ -1,5 +1,8 @@
 package com.sdk.foddy.ui.onboarding
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.ButtonDefaults
@@ -67,12 +70,11 @@ fun MainPager(
                 .weight(1f),
             contentAlignment = Center
         ) {
-            if (pagerState.currentPage != 2) {
-                HorizontalPagerIndicator(
-                    pagerState = pagerState,
-                    activeColor = MaterialTheme.colorScheme.onSecondary
-                )
-            } else {
+            this@Column.AnimatedVisibility(
+                visible = pagerState.currentPage == 2,
+                exit = fadeOut(),
+                enter = fadeIn()
+            ) {
                 ElevatedButton(
                     onClick = {
                         viewModel.saveUserVisiting(true)
@@ -92,6 +94,12 @@ fun MainPager(
                         fontFamily = ItimFont
                     )
                 }
+            }
+            if (pagerState.currentPage != 2) {
+                HorizontalPagerIndicator(
+                    pagerState = pagerState,
+                    activeColor = MaterialTheme.colorScheme.onSecondary
+                )
             }
         }
     }
