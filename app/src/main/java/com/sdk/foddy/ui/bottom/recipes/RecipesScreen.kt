@@ -9,10 +9,13 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
+import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTag
@@ -27,12 +30,13 @@ import com.sdk.foddy.util.Graph
 import com.sdk.foddy.util.SearchWidgetState
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterialApi::class, ExperimentalComposeUiApi::class)
 @Composable
 fun RecipesScreen(navHostController: NavHostController) {
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current as MainActivity
     val viewModel: RecipeViewModel = hiltViewModel()
+    val keyboardController = LocalSoftwareKeyboardController.current
     LaunchedEffect(key1 = viewModel.firstTime) {
         if (viewModel.firstTime) {
             viewModel.onEvent(RecipeEvent.GetAllRecipes(viewModel.foodState.value))
@@ -64,9 +68,11 @@ fun RecipesScreen(navHostController: NavHostController) {
                 searchWidgetState = searchState,
                 onActionClicked = {
                     searchState = SearchWidgetState.OPENED
+                    keyboardController?.show()
                 },
                 onCloseClicked = {
                     searchState = SearchWidgetState.CLOSED
+                    keyboardController?.hide()
                 },
                 onSearchClicked = {
                     viewModel.onEvent(RecipeEvent.OnSearchFood(it))

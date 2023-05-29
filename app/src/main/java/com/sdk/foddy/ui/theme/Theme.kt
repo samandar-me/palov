@@ -47,7 +47,6 @@ fun FooddyTheme(
     if (!view.isInEditMode) {
         SideEffect {
             (view.context as MainActivity).window.statusBarColor = colorScheme.primary.toArgb()
-            ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = darkTheme
         }
     }
 

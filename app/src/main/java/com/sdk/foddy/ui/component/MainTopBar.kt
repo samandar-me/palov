@@ -8,6 +8,7 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.focus.FocusRequester
 import com.sdk.foddy.ui.theme.AppFont
 import com.sdk.foddy.util.SearchWidgetState
 
@@ -18,6 +19,7 @@ fun MainTopBar(
     onCloseClicked: () -> Unit,
     onSearchClicked: (String) -> Unit
 ) {
+
     when (searchWidgetState) {
         SearchWidgetState.CLOSED -> {
             TopAppBar(
